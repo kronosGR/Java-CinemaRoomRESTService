@@ -38,4 +38,14 @@ public class Cinema {
     public void setAvailable_seats(List<Seat> available_seats) {
         this.available_seats = available_seats;
     }
+
+    public static Cinema getAllSeats(int rows, int columns) {
+        List<Seat> seats = new ArrayList<>();
+        for (int row = 1; row <= rows; row++) {
+            for (int column = 1; column <= columns; column++) {
+                seats.add(new Seat(row, column));
+            }
+        }
+        return new Cinema(rows, columns, seats);
+    }
 }
