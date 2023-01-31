@@ -385,6 +385,15 @@ files:
         };
     }
   learner_created: false
+- name: src/cinema/Order.java
+  visible: true
+  learner_created: true
+- name: src/cinema/Token.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/189/stages/947/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 31 Jan 2023 08:14:39 UTC"
 record: -1

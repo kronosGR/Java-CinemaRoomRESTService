@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class Controller {
@@ -36,11 +37,26 @@ public class Controller {
         for (int seatI = 0; seatI < cinema.getAvailable_seats().size(); seatI++) {
             Seat tmp = cinema.getAvailable_seats().get(seatI);
             if (tmp.equals(seat)) {
+                Order order = new Order(UUID.randomUUID(), tmp);
                 cinema.getAvailable_seats().remove(seatI);
-                return new ResponseEntity<>(tmp, HttpStatus.OK);
+                cinema.getOrders().add(order);
+                return new ResponseEntity<>(order, HttpStatus.OK);
             }
         }
         return new ResponseEntity<>(Map.of("error", "The ticket has been already purchased!"), HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/return")
+    public ResponseEntity<?> getOrder(@RequestBody Token token){
+        List<Order> orders = cinema.getOrders();
+        for (Order order: orders){
+            if (order.getToken().equals(token.getToken())){
+                orders.remove(order);
+                cinema.getAvailable_seats().add(order.getTicket());
+                return  new ResponseEntity<>(Map.of("returned_ticket", order.getTicket()), HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(Map.of("error", "Wrong token!"), HttpStatus.BAD_REQUEST);
     }
 
 
