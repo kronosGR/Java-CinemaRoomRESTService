@@ -478,6 +478,75 @@ files:
         };
     }
   learner_created: false
+- name: src/cinema/Order.java
+  visible: true
+  text: |
+    package cinema;
+
+    import com.fasterxml.jackson.annotation.JsonKey;
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import jdk.jfr.Label;
+    import jdk.jfr.Name;
+    import org.springframework.boot.context.properties.ConfigurationProperties;
+
+    import java.util.UUID;
+
+    public class Order {
+        UUID token;
+        Seat ticket;
+
+        public Order(UUID token, Seat ticket) {
+            this.token = token;
+            this.ticket = ticket;
+        }
+
+        public UUID getToken() {
+            return token;
+        }
+
+        public void setToken(UUID token) {
+            this.token = token;
+        }
+
+        public Seat getTicket() {
+            return ticket;
+        }
+
+        public void setTicket(Seat ticket) {
+            this.ticket = ticket;
+        }
+    }
+  learner_created: true
+- name: src/cinema/Token.java
+  visible: true
+  text: |
+    package cinema;
+
+    import java.util.UUID;
+
+    public class Token {
+        UUID token;
+
+        public Token() {
+        }
+
+        public Token(UUID token) {
+            this.token = token;
+        }
+
+        public UUID getToken() {
+            return token;
+        }
+
+        public void setToken(UUID token) {
+            this.token = token;
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/189/stages/948/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
+    Academy</a> to continue learning.
+  time: "Tue, 31 Jan 2023 08:18:29 UTC"
 record: -1
